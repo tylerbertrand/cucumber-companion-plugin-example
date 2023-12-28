@@ -19,6 +19,12 @@ dependencies {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+    distribution {
+        enabled.set(true)
+        remoteExecutionPreferred.set(true)
+        maxLocalExecutors.set(1)
+        maxRemoteExecutors.set(2)
+    }
 }
 
 tasks.named<KotlinCompile>("compileTestKotlin") {
