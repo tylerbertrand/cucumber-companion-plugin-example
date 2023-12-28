@@ -1,5 +1,9 @@
+import com.gradle.cucumber.companion.GenerateCucumberSuiteCompanionTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.9.22"
+    id("com.gradle.cucumber.companion") version "1.0.1"
 }
 
 dependencies {
@@ -15,4 +19,8 @@ dependencies {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.named<KotlinCompile>("compileTestKotlin") {
+    dependsOn(tasks.named<GenerateCucumberSuiteCompanionTask>("testGenerateCucumberSuiteCompanion"))
 }
